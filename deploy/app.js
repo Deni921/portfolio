@@ -207,9 +207,16 @@
 
     // nav
     if (nav) {
-      if (y > lastY && y > 220) nav.classList.add('hide');
-      else nav.classList.remove('hide');
-      lastY = y;
+      // direction deadband: ignore sub-pixel jitter from momentum scroll so
+      // the hide/show state doesn't flicker frame-to-frame
+      const dy = y - lastY;
+      if (Math.abs(dy) > 6) {
+        if (dy > 0 && y > 220) nav.classList.add('hide');
+        else nav.classList.remove('hide');
+        lastY = y;
+      }
+      // backdrop once we leave the hero
+      nav.classList.toggle('scrolled', y > 12);
       // flip nav to light when it sits over a dark section
       const navMid = 44;
       const overDark = darkSections.some((s) => {

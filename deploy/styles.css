@@ -126,8 +126,12 @@ body.traveling .veil{ opacity:.08; }
 /* =================================================================
    NAV
    ================================================================= */
-.nav{ position:fixed; inset:0 0 auto 0; z-index:200; display:flex; align-items:center; justify-content:space-between; padding:22px var(--pad); transition:transform .5s var(--ease); mix-blend-mode:normal; }
+.nav{ position:fixed; inset:0 0 auto 0; z-index:200; display:flex; align-items:center; justify-content:space-between; padding:22px var(--pad); transition:transform .5s var(--ease), background .35s var(--ease), backdrop-filter .35s var(--ease), border-color .35s var(--ease), padding .35s var(--ease); border-bottom:1px solid transparent; }
 .nav.hide{ transform:translateY(-130%); }
+/* once scrolled off the hero, give the nav a readable backdrop so page
+   content doesn't visually collide with it */
+.nav.scrolled{ padding-block:15px; background:color-mix(in oklab, var(--bg) 78%, transparent); backdrop-filter:saturate(140%) blur(12px); -webkit-backdrop-filter:saturate(140%) blur(12px); border-bottom-color:var(--line-soft); }
+.nav.scrolled.dark{ background:color-mix(in oklab, var(--ink) 66%, transparent); border-bottom-color:color-mix(in oklab, var(--bg) 18%, transparent); }
 .brand{ font-weight:800; font-size:17px; letter-spacing:-.02em; display:flex; align-items:center; white-space:nowrap; transition:color .4s var(--ease); }
 .nav-links{ display:flex; align-items:center; gap:4px; font-family:var(--mono); font-size:13px; font-weight:500; }
 .nav-links a{ padding:9px 13px; color:var(--ink-soft); letter-spacing:.03em; position:relative; transition:color .4s var(--ease); }
