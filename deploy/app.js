@@ -83,39 +83,6 @@
     });
   });
 
-  /* ---------------- CUSTOM CURSOR ---------------- */
-  if (fine && !reduce) {
-    const ring = $('#cRing'), dot = $('#cDot'), ctext = $('#cText');
-    document.body.classList.add('has-cursor');
-    let mx = innerWidth / 2, my = innerHeight / 2, rx = mx, ry = my, dx = mx, dy = my;
-    addEventListener('pointermove', (e) => { mx = e.clientX; my = e.clientY; }, { passive: true });
-    const cloop = () => {
-      rx = lerp(rx, mx, 0.18); ry = lerp(ry, my, 0.18);
-      dx = lerp(dx, mx, 0.4);  dy = lerp(dy, my, 0.4);
-      ring.style.transform = `translate(${rx}px,${ry}px)`;
-      dot.style.transform  = `translate(${dx}px,${dy}px)`;
-      requestAnimationFrame(cloop);
-    };
-    requestAnimationFrame(cloop);
-
-    const targetSel = 'a, button, .card, [data-cursor]';
-    document.addEventListener('pointerover', (e) => {
-      const t = e.target.closest(targetSel);
-      if (!t) return;
-      const label = (t.closest('[data-cursor]') || {}).dataset?.cursor;
-      ctext.textContent = label || '';
-      document.body.classList.add('cur-link');
-      document.body.classList.toggle('cur-label', !!label);
-    });
-    document.addEventListener('pointerout', (e) => {
-      const t = e.target.closest(targetSel);
-      if (t && !(e.relatedTarget && e.relatedTarget.closest && e.relatedTarget.closest(targetSel)))
-        document.body.classList.remove('cur-link', 'cur-label');
-    });
-    addEventListener('mouseleave', () => document.body.classList.add('cur-hide'));
-    addEventListener('mouseenter', () => document.body.classList.remove('cur-hide'));
-  }
-
   /* ---------------- REVEAL OBSERVER (masks / fades / clips) ---------------- */
   const revealEls = $$('.line-mask, .fade, .clip').filter((el) => !el.closest('#top') && !el.closest('#loader'));
   if ('IntersectionObserver' in window && !reduce) {

@@ -62,32 +62,6 @@ img{ display:block; max-width:100%; }
 
 .wrap{ max-width:var(--maxw); margin:0 auto; padding-inline:var(--pad); }
 
-/* hide system cursor only where we draw our own */
-@media (pointer:fine){ body.has-cursor, body.has-cursor *{ cursor:none !important; } }
-
-/* =================================================================
-   CUSTOM CURSOR
-   ================================================================= */
-.cursor-ring, .cursor-dot{ position:fixed; top:0; left:0; z-index:9999; pointer-events:none; border-radius:50%; will-change:transform; }
-.cursor-ring{
-  width:44px; height:44px; margin:-22px 0 0 -22px;
-  border:1.5px solid #fff;
-  mix-blend-mode:difference;
-  transition:width .35s var(--ease), height .35s var(--ease), margin .35s var(--ease), background .35s var(--ease), border-color .35s var(--ease), opacity .3s;
-  display:grid; place-items:center;
-}
-.cursor-dot{ width:6px; height:6px; margin:-3px 0 0 -3px; background:#fff; mix-blend-mode:difference; transition:opacity .3s, transform .25s var(--ease); }
-.cursor-ring .ctext{ font-family:var(--mono); font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:var(--ink); opacity:0; transition:opacity .3s; white-space:nowrap; }
-/* hover states (toggled via body classes)
-   plain link hover → open outlined ring (text under it stays readable)
-   labelled target  → filled accent badge with text */
-body.cur-link .cursor-ring{ width:60px; height:60px; margin:-30px 0 0 -30px; background:transparent; }
-body.cur-label .cursor-ring{ width:84px; height:84px; margin:-42px 0 0 -42px; background:var(--acc); border-color:var(--acc); mix-blend-mode:normal; }
-body.cur-label .cursor-dot{ opacity:0; }
-body.cur-label .cursor-ring .ctext{ opacity:1; }
-body.cur-hide .cursor-ring, body.cur-hide .cursor-dot{ opacity:0; }
-@media (pointer:coarse){ .cursor-ring, .cursor-dot{ display:none; } }
-
 /* =================================================================
    PAGE-TRAVEL TRANSITION (anchor navigation)
    ================================================================= */
