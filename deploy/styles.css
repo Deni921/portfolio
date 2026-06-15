@@ -203,7 +203,7 @@ body.traveling .veil{ opacity:.08; }
    PINNED MANIFESTO (scroll-linked word highlight)
    ================================================================= */
 .manifesto{ position:relative; height:230vh; }
-.manifesto .pin{ position:sticky; top:0; min-height:100svh; display:flex; align-items:center; padding-block:14vh; }
+.manifesto .pin{ position:sticky; top:0; min-height:100svh; display:flex; align-items:center; padding-block:14vh; padding-inline:var(--pad); }
 .manifesto .stmt{ font-size:clamp(28px,5vw,76px); font-weight:700; letter-spacing:-.025em; line-height:1.12; max-width:24ch; }
 .manifesto .stmt .w{ color:var(--ink-faint); transition:color .25s linear; }
 .manifesto .stmt .w.lit{ color:var(--ink); }
